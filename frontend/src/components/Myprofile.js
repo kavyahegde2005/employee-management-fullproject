@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "./api";
 
 export default function Myprofile() {
 
@@ -25,14 +26,14 @@ export default function Myprofile() {
             formData.append("photo", photo);
 
             await axios.post(
-                "http://localhost:8000/api/profile/",
-                formData,
-                {
-                    headers: {
-                        "Content-Type": "multipart/form-data",
-                    },
-                }
-            );
+    `${API}/profile/`,
+    formData,
+    {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    }
+);
 
             alert("Profile Updated!");
             navigate("/salary");

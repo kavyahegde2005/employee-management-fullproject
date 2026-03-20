@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API from "./api";
 
 export default function History() {
 
@@ -12,7 +13,7 @@ export default function History() {
 
     const fetchSalary = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/salary/");
+            const res = await axios.get(`${API}/salary/`);
             setSalaryHistory(res.data);
         } catch (error) {
             console.error(error);

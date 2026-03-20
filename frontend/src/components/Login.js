@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Eye, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import API from "./api";
 
 export default function Login() {
     const [role, setRole] = useState("admin");
@@ -14,11 +15,11 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:8000/api/login/", {
-                username: email,
-                password,
-                role,
-            });
+            const response = await axios.post(`${API}/login/`, {
+    username: email,
+    password,
+    role,
+});
 
             console.log(response.data);
             localStorage.setItem("isLoggedIn", "true");

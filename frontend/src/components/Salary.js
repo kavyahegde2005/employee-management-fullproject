@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import API from "./api";
 export default function Save() {
 
     const [salary, setSalary] = useState("");
@@ -20,13 +20,13 @@ export default function Save() {
         const total = (base + b - d).toString();
 
         try {
-            await axios.post("http://localhost:8000/api/salary/", {
-                salary,
-                bonus,
-                deduction,
-                month,
-                total,
-            });
+            await axios.post(`${API}/salary/`, {
+    salary,
+    bonus,
+    deduction,
+    month,
+    total,
+});
             console.log({ salary, bonus, deduction, month, total });
             alert("Salary Added!");
             navigate("/employee");

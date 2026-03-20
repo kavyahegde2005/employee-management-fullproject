@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
+import API from "./api";
 export default function EmployeeDetails() {
     const { id } = useParams();
     const [employee, setEmployee] = useState(null);
@@ -13,7 +14,7 @@ export default function EmployeeDetails() {
 
     const fetchEmployee = async () => {
         try {
-            const res = await axios.get(`http://localhost:8000/api/profile/${id}/`);
+           const res = await axios.get(`${API}/profile/${id}/`);
             setEmployee(res.data);
         } catch (err) {
             console.error("Error fetching employee", err);
@@ -33,7 +34,7 @@ export default function EmployeeDetails() {
                 <div className="w-24 h-24 rounded-full overflow-hidden bg-gray-200">
                     {employee.photo ? (
                         <img
-                            src={`http://localhost:8000${employee.photo}`}
+                            src={`${API.replace("/api","")}${employee.photo}`}
                             alt="profile"
                             className="w-full h-full object-cover"
                         />

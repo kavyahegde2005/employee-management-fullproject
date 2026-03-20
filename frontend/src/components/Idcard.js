@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
+import API from "./api";
 
 export default function IDCard() {
     const { id } = useParams();
@@ -11,7 +12,8 @@ export default function IDCard() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/api/profile/${id}/`)
+
+  .get(`${API}/profile/${id}/`)
             .then((res) => setEmployee(res.data))
             .catch((err) => console.error(err));
     }, [id]);
@@ -41,7 +43,7 @@ export default function IDCard() {
                     <div className="w-28 h-28 rounded-full overflow-hidden border-4 border-green-500">
                         {employee.photo ? (
                             <img
-                                src={`http://localhost:8000${employee.photo}`}
+                                src={`${API.replace("/api", "")}${employee.photo}`}
                                 alt="profile"
                                 className="w-full h-full object-cover"
                             />

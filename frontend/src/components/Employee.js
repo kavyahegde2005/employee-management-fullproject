@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import API from "./api";
 
 export default function EmployeeDashboard() {
 
@@ -14,7 +15,7 @@ export default function EmployeeDashboard() {
 
     const fetchProfile = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/profile/");
+            const res = await axios.get(`${API}/profile/`);
             if (res.data && res.data.length > 0) {
                 setProfile(res.data[res.data.length - 1]);
             } else {
@@ -28,7 +29,7 @@ export default function EmployeeDashboard() {
 
     const fetchSalary = async () => {
         try {
-            const res = await axios.get("http://localhost:8000/api/salary/");
+            const res = await axios.get(`${API}/salary/`);
             setSalaryHistory(res.data);
         } catch (error) {
             console.error(error);
@@ -50,7 +51,7 @@ export default function EmployeeDashboard() {
                 <div className="flex justify-center mb-4">
                     {profile.photo ? (
                         <img
-                            src={`http://localhost:8000${profile.photo}`}
+                            src={`${API.replace("/api","")}${profile.photo}`}
                             alt="profile"
                             className="w-24 h-24 rounded-full object-cover border"
                         />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import API from "./api";
 
 export default function AdminDashboard() {
 
@@ -16,10 +17,10 @@ export default function AdminDashboard() {
 
     const fetchEmployees = async () => {
         try {
-            const [profileRes, salaryRes] = await Promise.all([
-                axios.get("http://localhost:8000/api/profile/"),
-                axios.get("http://localhost:8000/api/salary/")
-            ]);
+           const [profileRes, salaryRes] = await Promise.all([
+    axios.get(`${API}/profile/`),
+    axios.get(`${API}/salary/`)
+]);
 
             const profiles = profileRes.data || [];
             const salaries = salaryRes.data || [];
@@ -51,7 +52,7 @@ export default function AdminDashboard() {
         if (!confirmDelete) return;
 
         try {
-            await axios.delete(`http://localhost:8000/api/profile/delete/${id}/`);
+            await axios.delete(`${API}/profile/delete/${id}/`);
             setEmployees(employees.filter(emp => emp.id !== id));
         } catch (error) {
             console.error(error);

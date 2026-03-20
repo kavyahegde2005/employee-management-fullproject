@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import API from "./api";
 
 export default function Register() {
     const [role, setRole] = useState("admin");
@@ -37,7 +38,7 @@ export default function Register() {
             formData.append("password", password);
             formData.append("role", role.toLowerCase());
 
-            await axios.post("http://localhost:8000/api/register/", formData);
+            await axios.post(`${API}/register/`, formData);
 
             alert("Registration successful!");
             navigate("/login");

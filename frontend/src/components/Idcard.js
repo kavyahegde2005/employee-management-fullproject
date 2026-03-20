@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import html2canvas from "html2canvas";
 import { useNavigate } from "react-router-dom";
-import API from "./api";
+import API from "../api";
 
 export default function IDCard() {
     const { id } = useParams();

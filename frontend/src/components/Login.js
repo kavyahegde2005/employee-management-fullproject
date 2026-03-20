@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Eye, User } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import API from "./api";
+import API from "../api";
 
 export default function Login() {
     const [role, setRole] = useState("admin");

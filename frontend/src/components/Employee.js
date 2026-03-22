@@ -26,7 +26,6 @@ export default function EmployeeDashboard() {
         }
     };
 
-
     const fetchSalary = async () => {
         try {
             const res = await axios.get(`${API}/salary/`);
@@ -36,22 +35,18 @@ export default function EmployeeDashboard() {
         }
     };
 
+    const profileImageUrl = profile.photo ? `${API.replace("/api","")}${profile.photo}` : null;
+
     return (
         <div className="p-10 bg-gray-100 min-h-screen">
-
-            <h1 className="text-3xl font-bold mb-8">
-                Employee Dashboard
-            </h1>
+            <h1 className="text-3xl font-bold mb-8">Employee Dashboard</h1>
 
             <div className="bg-white p-6 text-center rounded-xl shadow mb-8">
-
-                <h2 className="text-center font-semibold mb-4">
-                    My Profile
-                </h2>
+                <h2 className="text-center font-semibold mb-4">My Profile</h2>
                 <div className="flex justify-center mb-4">
-                    {profile.photo ? (
+                    {profileImageUrl ? (
                         <img
-                            src={`${API.replace("/api","")}${profile.photo}`}
+                            src={profileImageUrl}
                             alt="profile"
                             className="w-24 h-24 rounded-full object-cover border"
                         />
@@ -66,18 +61,12 @@ export default function EmployeeDashboard() {
                 <p><strong>Phone:</strong> {profile.phone}</p>
                 <p><strong>Department:</strong> {profile.department}</p>
                 <p><strong>Position:</strong> {profile.position}</p>
-
-
             </div>
 
             <div className="bg-white p-6 rounded-xl shadow">
-
-                <h2 className="text-xl font-semibold mb-4">
-                    Salary History
-                </h2>
+                <h2 className="text-xl font-semibold mb-4">Salary History</h2>
 
                 <table className="w-full border">
-
                     <thead className="bg-gray-200">
                         <tr>
                             <th className="p-2 border">Month</th>
@@ -87,7 +76,6 @@ export default function EmployeeDashboard() {
                             <th className="p-2 border">Total</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {salaryHistory.map((salary, index) => (
                             <tr key={index}>
@@ -99,10 +87,9 @@ export default function EmployeeDashboard() {
                             </tr>
                         ))}
                     </tbody>
-
                 </table>
+            </div><br />
 
-            </div><br></br>
             <Link to="/myprofile">
                 <button className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded mr-2">
                     Edit Profile
@@ -113,7 +100,6 @@ export default function EmployeeDashboard() {
                     Back to Dashboard
                 </button>
             </Link>
-
         </div>
     );
 }
